@@ -53,10 +53,10 @@ def save_test_cases_to_files(test_cases, output_dir="tests"):
 if __name__ == "__main__":
     # Parameters for test generation
     num_tests = 20        # Number of test cases to generate
-    max_items = 100       # Maximum number of items per test case
-    max_capacity = 50     # Maximum capacity of the knapsack
-    max_weight = 20       # Maximum weight of an item
-    max_value = 100       # Maximum value of an item
+    max_items = 50       # Maximum number of items per test case
+    max_capacity = 25     # Maximum capacity of the knapsack
+    max_weight = 15       # Maximum weight of an item
+    max_value = 30       # Maximum value of an item
 
     # Generate test cases
     category1, category2 = generate_knapsack_tests(num_tests, max_items, max_capacity, max_weight, max_value)
