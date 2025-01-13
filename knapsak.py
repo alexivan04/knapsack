@@ -202,53 +202,87 @@ def main():
     print(f"Results for category 1 saved to {excel_path_category1}")
     print(f"Results for category 2 saved to {excel_path_category2}")
 
-    # Plot the results for category 1 (time complexity vs number of items)
-    plt.figure(figsize=(10, 6), dpi=150)  # Increased DPI for finer graph
-    plt.scatter(df_category1["Number of Items"], df_category1["DP Execution Time (ns)"], marker="o", label="DP Execution Time", color="blue", s=30)  # Reduced marker size
-    plt.scatter(df_category1["Number of Items"], df_category1["Backtracking Execution Time (ns)"], marker="o", label="Backtracking Execution Time", color="red", s=30)
-    plt.scatter(df_category1["Number of Items"], df_category1["Branch and Bound Execution Time (ns)"], marker="o", label="Branch and Bound Execution Time", color="green", s=30)
-
-    # Plot the trendlines
-    for col, color in zip(["DP Execution Time (ns)", "Backtracking Execution Time (ns)", "Branch and Bound Execution Time (ns)"], ["blue", "red", "green"]):
-        slope, intercept = np.polyfit(df_category1["Number of Items"], df_category1[col], 1)
-        trendline = np.polyval([slope, intercept], df_category1["Number of Items"])
-        plt.plot(df_category1["Number of Items"], trendline, color=color, label=f"{col} Trendline")
-
-    plt.title("Execution Time vs Number of Items (Category 1)")
+    # Plot the results for Dynamic Programming (Category 1)
+    plt.figure(figsize=(10, 6), dpi=150)
+    plt.scatter(df_category1["Number of Items"], df_category1["DP Execution Time (ns)"], marker="o", color="blue", s=30, label="DP Execution Time")
+    plt.title("Dynamic Programming Execution Time vs Number of Items (Category 1)")
     plt.xlabel("Number of Items")
     plt.ylabel("Execution Time (ns)")
-    plt.legend()
     plt.grid(True)
+    plt.legend()
+    dp_plot_path_category1 = os.path.join(outputs_dir, "DP_execution_time_vs_items_category1.png")
+    plt.savefig(dp_plot_path_category1, dpi=150)
+    print(f"DP Plot for category 1 saved to {dp_plot_path_category1}")
+    plt.close()
 
-    # Save the plot for category 1 in the outputs folder
-    plot_path_category1 = os.path.join(outputs_dir, "execution_time_vs_items_plot_with_trendline.png")
-    plt.savefig(plot_path_category1, dpi=150)  # Save with higher DPI
-    print(f"Plot for category 1 with trendline saved to {plot_path_category1}")
-    plt.show()
+    # Plot the results for Backtracking (Category 1)
+    plt.figure(figsize=(10, 6), dpi=150)
+    plt.scatter(df_category1["Number of Items"], df_category1["Backtracking Execution Time (ns)"], marker="o", color="red", s=30, label="Backtracking Execution Time")
+    plt.title("Backtracking Execution Time vs Number of Items (Category 1)")
+    plt.xlabel("Number of Items")
+    plt.ylabel("Execution Time (ns)")
+    plt.grid(True)
+    plt.legend()
+    backtracking_plot_path_category1 = os.path.join(outputs_dir, "Backtracking_execution_time_vs_items_category1.png")
+    plt.savefig(backtracking_plot_path_category1, dpi=150)
+    print(f"Backtracking Plot for category 1 saved to {backtracking_plot_path_category1}")
+    plt.close()
 
-    # Plot the results for category 2 (time complexity vs knapsack capacity)
-    plt.figure(figsize=(10, 6), dpi=150)  # Increased DPI for finer graph
-    plt.scatter(df_category2["Knapsack Capacity"], df_category2["DP Execution Time (ns)"], marker="o", label="DP Execution Time", color="blue", s=30)
-    plt.scatter(df_category2["Knapsack Capacity"], df_category2["Backtracking Execution Time (ns)"], marker="o", label="Backtracking Execution Time", color="red", s=30)
-    plt.scatter(df_category2["Knapsack Capacity"], df_category2["Branch and Bound Execution Time (ns)"], marker="o", label="Branch and Bound Execution Time", color="green", s=30)
+    # Plot the results for Branch and Bound (Category 1)
+    plt.figure(figsize=(10, 6), dpi=150)
+    plt.scatter(df_category1["Number of Items"], df_category1["Branch and Bound Execution Time (ns)"], marker="o", color="green", s=30, label="Branch and Bound Execution Time")
+    plt.title("Branch and Bound Execution Time vs Number of Items (Category 1)")
+    plt.xlabel("Number of Items")
+    plt.ylabel("Execution Time (ns)")
+    plt.grid(True)
+    plt.legend()
+    branch_bound_plot_path_category1 = os.path.join(outputs_dir, "Branch_and_Bound_execution_time_vs_items_category1.png")
+    plt.savefig(branch_bound_plot_path_category1, dpi=150)
+    print(f"Branch and Bound Plot for category 1 saved to {branch_bound_plot_path_category1}")
+    plt.close()
 
-    # Plot the trendlines
-    for col, color in zip(["DP Execution Time (ns)", "Backtracking Execution Time (ns)", "Branch and Bound Execution Time (ns)"], ["blue", "red", "green"]):
-        slope, intercept = np.polyfit(df_category2["Knapsack Capacity"], df_category2[col], 1)
-        trendline = np.polyval([slope, intercept], df_category2["Knapsack Capacity"])
-        plt.plot(df_category2["Knapsack Capacity"], trendline, color=color, label=f"{col} Trendline")
-
-    plt.title("Execution Time vs Knapsack Capacity (Category 2)")
+    # Plot the results for Dynamic Programming (Category 2)
+    plt.figure(figsize=(10, 6), dpi=150)
+    plt.scatter(df_category2["Knapsack Capacity"], df_category2["DP Execution Time (ns)"], marker="o", color="blue", s=30, label="DP Execution Time")
+    plt.title("Dynamic Programming Execution Time vs Knapsack Capacity (Category 2)")
     plt.xlabel("Knapsack Capacity")
     plt.ylabel("Execution Time (ns)")
-    plt.legend()
     plt.grid(True)
+    plt.legend()
+    dp_plot_path_category2 = os.path.join(outputs_dir, "DP_execution_time_vs_capacity_category2.png")
+    plt.savefig(dp_plot_path_category2, dpi=150)
+    print(f"DP Plot for category 2 saved to {dp_plot_path_category2}")
+    plt.close()
 
-    # Save the plot for category 2 in the outputs folder
-    plot_path_category2 = os.path.join(outputs_dir, "execution_time_vs_capacity_plot_with_trendline.png")
-    plt.savefig(plot_path_category2, dpi=150)  # Save with higher DPI
-    print(f"Plot for category 2 with trendline saved to {plot_path_category2}")
-    plt.show()
+    # Plot the results for Backtracking (Category 2)
+    plt.figure(figsize=(10, 6), dpi=150)
+    plt.scatter(df_category2["Knapsack Capacity"], df_category2["Backtracking Execution Time (ns)"], marker="o", color="red", s=30, label="Backtracking Execution Time")
+    plt.title("Backtracking Execution Time vs Knapsack Capacity (Category 2)")
+    plt.xlabel("Knapsack Capacity")
+    plt.ylabel("Execution Time (ns)")
+    plt.grid(True)
+    plt.legend()
+    backtracking_plot_path_category2 = os.path.join(outputs_dir, "Backtracking_execution_time_vs_capacity_category2.png")
+    plt.savefig(backtracking_plot_path_category2, dpi=150)
+    print(f"Backtracking Plot for category 2 saved to {backtracking_plot_path_category2}")
+    plt.close()
+
+    # Plot the results for Branch and Bound (Category 2)
+    plt.figure(figsize=(10, 6), dpi=150)
+    plt.scatter(df_category2["Knapsack Capacity"], df_category2["Branch and Bound Execution Time (ns)"], marker="o", color="green", s=30, label="Branch and Bound Execution Time")
+    plt.title("Branch and Bound Execution Time vs Knapsack Capacity (Category 2)")
+    plt.xlabel("Knapsack Capacity")
+    plt.ylabel("Execution Time (ns)")
+    plt.grid(True)
+    plt.legend()
+    branch_bound_plot_path_category2 = os.path.join(outputs_dir, "Branch_and_Bound_execution_time_vs_capacity_category2.png")
+    plt.savefig(branch_bound_plot_path_category2, dpi=150)
+    print(f"Branch and Bound Plot for category 2 saved to {branch_bound_plot_path_category2}")
+    plt.close()
+
+if __name__ == "__main__":
+    main()
+
 
 
 if __name__ == "__main__":
