@@ -6,11 +6,13 @@ Această arhivă conține implementarea proiectului "Problema Rucsacului", reali
 
 ```
 - knapsack.py                  # Fișierul sursă cu implementarea algoritmilor
+- generate_tests.py            # Scriptul de generare a testelor
 - /tests
     - /category1               # Set de teste pentru categoria 1
     - /category2               # Set de teste pentru categoria 2
 - requirements.txt             # Fișier cu dependințele proiectului
 - README.md                    # Acest fișier
+- raport_proiect.pdf           # Documentația proiectului
 ```
 
 ## Cum se pot evalua soluțiile
@@ -48,7 +50,6 @@ Pentru a rula și evalua soluțiile implementate, urmați pașii de mai jos:
     max_capacity = 200     # Capacitatea maxima a rucsacului
     max_weight = 40        # Greutatea maxima a unui obiect
     max_value = 50         # Valoarea maxima a unui obiect
-
 
 ## Modul de Generare a Testelor
 
@@ -106,5 +107,5 @@ Pe parcursul dezvoltării acestui proiect, am consultat următoarele surse:
 
 ## Notă Finală
 
-Proiectul oferă o analiză detaliată a metodei de rezolvare a problemei rucsacului, folosind trei algoritmi principali: programare dinamică, backtracking și greedy. Pentru detalii suplimentare despre implementare și rezultatele obținute, consultați fișierul `docs/raport_proiect.pdf`.
+Proiectul oferă o analiză detaliată a metodei de rezolvare a problemei rucsacului, folosind trei algoritmi principali: programare dinamică, backtracking și greedy. Pentru detalii suplimentare despre implementare și rezultatele obținute, consultați fișierul `raport_proiect.pdf`.
 
