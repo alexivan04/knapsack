@@ -33,6 +33,7 @@ Pentru a rula și evalua soluțiile implementate, urmați pașii de mai jos:
 
 1. Rulați fișierul `knapsack.py` pentru a testa algoritmii implementați, pe setul de date deja dat:
    ```bash
+   cd src
    python knapsack.py
    ```
    Acesta va rula algoritmii pe seturile de date de testare și va afișa rezultatele obținute.
@@ -40,6 +41,7 @@ Pentru a rula și evalua soluțiile implementate, urmați pașii de mai jos:
 
 2. Pentru a genera un nou set de date, rulați scriptul de generare a testelor:
    ```bash
+   cd tests
    python generate_tests.py
    ```
    Acesta va crea un set de teste nou, pe care îl puteți folosi pentru a evalua algoritmii.
