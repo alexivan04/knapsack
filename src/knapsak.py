@@ -90,8 +90,13 @@ def solve_test_case(file_path):
     return n, G, dp_time, backtracking_time, fractional_time, fractional_accuracy
 
 def main():
-    category1_dir = "tests/category1"
-    category2_dir = "tests/category2"
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    category1_dir = os.path.join(parent_dir, "tests", "category1")
+    category2_dir = os.path.join(parent_dir, "tests", "category2")
+    
+    print(category1_dir)
+    print(category2_dir)
     results_category1 = []
     results_category2 = []
 

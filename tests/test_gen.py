@@ -62,7 +62,7 @@ if __name__ == "__main__":
     category1, category2 = generate_knapsack_tests(num_tests, max_items, max_capacity, max_weight, max_value)
 
     # Save test cases to files
-    save_test_cases_to_files(category1, output_dir="tests/category1")
-    save_test_cases_to_files(category2, output_dir="tests/category2")
+    save_test_cases_to_files(category1, output_dir="category1")
+    save_test_cases_to_files(category2, output_dir="category2")
 
     print(f"Generated {num_tests} test cases for Category 1 and Category 2.")
