@@ -5,11 +5,12 @@
 Această arhivă conține implementarea proiectului "Problema Rucsacului", realizată de Ivan Alexandru, Trufaș Rareș și Stîngă Cristina - grupa 322CC, Facultatea de Automatică și Calculatoare, Universitatea POLITEHNICA București. Structura arhivei este următoarea:
 
 ```
-- knapsack.py                  # Fișierul sursă cu implementarea algoritmilor
-- generate_tests.py            # Scriptul de generare a testelor
+- /src
+    - knapsack.py              # Fișierul sursă cu implementarea algoritmilor
 - /tests
     - /category1               # Set de teste pentru categoria 1
     - /category2               # Set de teste pentru categoria 2
+    - generate_tests.py        # Scriptul de generare a testelor
 - requirements.txt             # Fișier cu dependințele proiectului
 - README.md                    # Acest fișier
 - raport_proiect.pdf           # Documentația proiectului

@@ -117,7 +117,7 @@ def main():
     df_category1 = pd.DataFrame(results_category1, columns=["Number of Items", "Knapsack Capacity", "DP Execution Time (ms)", "Backtracking Execution Time (ms)", "Fractional Execution Time (ms)", "Fractional Accuracy (%)"])
     df_category2 = pd.DataFrame(results_category2, columns=["Number of Items", "Knapsack Capacity", "DP Execution Time (ms)", "Backtracking Execution Time (ms)", "Fractional Execution Time (ms)", "Fractional Accuracy (%)"])
 
-    outputs_dir = "outputs"
+    outputs_dir = os.path.join(parent_dir, "outputs")
     os.makedirs(outputs_dir, exist_ok=True)
 
     excel_path_category1 = os.path.join(outputs_dir, "results_category1.xlsx")
