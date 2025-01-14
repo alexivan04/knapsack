@@ -64,22 +64,30 @@ def solve_test_case(file_path):
             g, c = map(int, f.readline().split())
             a.append(Poz(g, c))
 
-    start_time = time.time()
+    start_time = time.perf_counter()
     dp_result = knapsack_dynamic(n, G, a)
-    dp_time = (time.time() - start_time) * 10000
+    dp_time = (time.perf_counter() - start_time) * 1e3
 
-    start_time = time.time()
-    backtracking_result = knapsack_backtracking(n, G, a)
-    backtracking_time = (time.time() - start_time) * 10000
+    backtracking_time = -1
+    if n > 32:
+        print(f"Skipping backtracking and fractional knapsack for {file_path} due to large number of items.")
+        backtracking_result = -1
+    else:
+        start_time = time.perf_counter()
+        backtracking_result = knapsack_backtracking(n, G, a)
+        backtracking_time = (time.perf_counter() - start_time) * 1e3
 
-    start_time = time.time()
+    start_time = time.perf_counter()
     fractional_result = fractional_knapsack(n, G, [Item(x.g, x.c) for x in a])
-    fractional_time = (time.time() - start_time) * 10000
+    fractional_time = (time.perf_counter() - start_time) * 1e3
+
+    fractional_accuracy = (dp_result / fractional_result) * 100 if dp_result > 0 else 0
 
     print(f"Result for {file_path}: DP: {dp_result}, Backtracking: {backtracking_result}, Fractional: {fractional_result:.2f}")
-    print(f"Execution Times: DP: {dp_time:.3f} ns, Backtracking: {backtracking_time:.3f} ns, Fractional: {fractional_time:.3f} ns")
+    print(f"Execution Times: DP: {dp_time:.3f} ms, Backtracking: {backtracking_time:.3f} ms, Fractional: {fractional_time:.3f} ms")
+    print(f"Fractional Knapsack Accuracy: {fractional_accuracy:.2f}%")
 
-    return n, G, dp_time, backtracking_time, fractional_time
+    return n, G, dp_time, backtracking_time, fractional_time, fractional_accuracy
 
 def main():
     category1_dir = "tests/category1"
@@ -101,8 +109,8 @@ def main():
             file_path = os.path.join(category2_dir, test_file)
             results_category2.append(solve_test_case(file_path))
 
-    df_category1 = pd.DataFrame(results_category1, columns=["Number of Items", "Knapsack Capacity", "DP Execution Time (ns)", "Backtracking Execution Time (ns)", "Fractional Execution Time (ns)"])
-    df_category2 = pd.DataFrame(results_category2, columns=["Number of Items", "Knapsack Capacity", "DP Execution Time (ns)", "Backtracking Execution Time (ns)", "Fractional Execution Time (ns)"])
+    df_category1 = pd.DataFrame(results_category1, columns=["Number of Items", "Knapsack Capacity", "DP Execution Time (ms)", "Backtracking Execution Time (ms)", "Fractional Execution Time (ms)", "Fractional Accuracy (%)"])
+    df_category2 = pd.DataFrame(results_category2, columns=["Number of Items", "Knapsack Capacity", "DP Execution Time (ms)", "Backtracking Execution Time (ms)", "Fractional Execution Time (ms)", "Fractional Accuracy (%)"])
 
     outputs_dir = "outputs"
     os.makedirs(outputs_dir, exist_ok=True)
@@ -115,10 +123,10 @@ def main():
     print(f"Results for category 2 saved to {excel_path_category2}")
 
     plt.figure(figsize=(10, 6), dpi=150)
-    plt.scatter(df_category1["Number of Items"], df_category1["DP Execution Time (ns)"], marker="o", color="blue", s=30, label="DP Execution Time")
+    plt.scatter(df_category1["Number of Items"], df_category1["DP Execution Time (ms)"], marker="o", color="blue", s=30, label="DP Execution Time")
     plt.title("Dynamic Programming Execution Time vs Number of Items (Category 1)")
     plt.xlabel("Number of Items")
-    plt.ylabel("Execution Time (ns)")
+    plt.ylabel("Execution Time (ms)")
     plt.grid(True)
     plt.legend()
     dp_plot_path_category1 = os.path.join(outputs_dir, "DP_execution_time_vs_items_category1.png")
@@ -126,10 +134,10 @@ def main():
     plt.close()
 
     plt.figure(figsize=(10, 6), dpi=150)
-    plt.scatter(df_category1["Number of Items"], df_category1["Backtracking Execution Time (ns)"], marker="o", color="red", s=30, label="Backtracking Execution Time")
+    plt.scatter(df_category1["Number of Items"], df_category1["Backtracking Execution Time (ms)"], marker="o", color="red", s=30, label="Backtracking Execution Time")
     plt.title("Backtracking Execution Time vs Number of Items (Category 1)")
     plt.xlabel("Number of Items")
-    plt.ylabel("Execution Time (ns)")
+    plt.ylabel("Execution Time (ms)")
     plt.grid(True)
     plt.legend()
     backtracking_plot_path_category1 = os.path.join(outputs_dir, "Backtracking_execution_time_vs_items_category1.png")
@@ -137,10 +145,10 @@ def main():
     plt.close()
 
     plt.figure(figsize=(10, 6), dpi=150)
-    plt.scatter(df_category1["Number of Items"], df_category1["Fractional Execution Time (ns)"], marker="o", color="green", s=30, label="Fractional Execution Time")
+    plt.scatter(df_category1["Number of Items"], df_category1["Fractional Execution Time (ms)"], marker="o", color="green", s=30, label="Fractional Execution Time")
     plt.title("Fractional Knapsack Execution Time vs Number of Items (Category 1)")
     plt.xlabel("Number of Items")
-    plt.ylabel("Execution Time (ns)")
+    plt.ylabel("Execution Time (ms)")
     plt.grid(True)
     plt.legend()
     fractional_plot_path_category1 = os.path.join(outputs_dir, "Fractional_execution_time_vs_items_category1.png")
